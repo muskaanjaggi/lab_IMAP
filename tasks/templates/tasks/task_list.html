@@ -47,10 +47,10 @@
   <ul id="task-list">
     {% for task in tasks %}
       <li data-done="{{ task.done|yesno:'true,false' }}">
-        <form method="post" action="{% url 'toggle_task' task.id %}" style="display:contents">
-          {% csrf_token %}
-          <button type="submit" class="task-check" data-done="{{ task.done|yesno:'true,false' }}">{% if task.done %}✓{% endif %}</button>
-        </form>
+        <form method="post" action="{% url 'clear_completed' %}">
+  {% csrf_token %}
+  <button type="submit" class="btn" style="background:var(--text-muted)">Clear completed</button>
+</form>
         <span class="task-title">{{ task.title }}{% if task.due_date %} &mdash; due {{ task.due_date }}{% endif %}</span>
         <span class="badge" data-priority="{{ task.priority }}">{{ task.priority }}</span>
         <form method="post" action="{% url 'delete_task' task.id %}" style="display:contents">
